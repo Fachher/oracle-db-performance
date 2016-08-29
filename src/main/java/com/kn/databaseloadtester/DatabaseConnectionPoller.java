@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLRecoverableException;
 import java.sql.SQLTimeoutException;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,10 +45,6 @@ public class DatabaseConnectionPoller implements Runnable {
             } finally {
                 closeConnection(connection);
             }
-        }
-
-        for (Handler handler : logger.getHandlers()) {
-            handler.flush();
         }
 
         System.out.println("Number of connections for thread " + Thread.currentThread().getName() + " successfully: " + numberOfSuccessfullyConnections + " failed: " + numberOfFailedConnections);
